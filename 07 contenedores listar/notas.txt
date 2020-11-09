@@ -1,0 +1,10 @@
+docker ps
+docker ps -a
+
+docker run -d jenkins
+
+MAPEO
+docker run -d -p 8080:8080 jenkins
+docker run -d -p 9090:8080 jenkins
+
+docker rm -f ... nombres o ids

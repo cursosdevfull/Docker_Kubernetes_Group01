@@ -1,0 +1,15 @@
+docker run -d --name mongo-server -p 27017:27017 mongo:4.0.0
+
+docker stats mongo-server
+
+docker run -d --name mongo-server2 -p 27018:27017 -m 500mb mongo:4.0.0
+
+VOLUMEN ANÓNIMO
+docker run -d --name mongo-server3 -p 27019:27017 -v /data/db mongo:4.0.0
+
+VOLUMEN NOMBRADO
+docker volume create mydata-mongo
+docker run -d --name mongo-server4 -p 27020:27017 -v mydata-mongo:/data/db mongo:4.0.0
+
+VOLUMEN HOST
+docker run -d --name mongo-server5 -p 27021:27017 -v ${PWD}/data/db:/data/db mongo:4.0.0

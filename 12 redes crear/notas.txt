@@ -1,0 +1,8 @@
+docker network create test-network
+
+docker network create -d bridge --subnet 172.124.10.0/24 --gateway 172.124.10.5 docker-test
+
+docker network create -d host --subnet 172.124.10.0/24 --gateway 172.124.10.5 docker-test-host
+
+docker network connect docker-test mongo-server5
+
