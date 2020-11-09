@@ -1,0 +1,7 @@
+docker run -d --name mysql_server -e MYSQL_ROOT_PASSWORD=12345 mysql:latest
+
+docker logs -f mysql_server
+
+docker run -d --name mysql_own -e MYSQL_ROOT_PASSWORD=12345 -e MYSQL_DATABASE=docker-db -e MYSQL_USER=docker-user -e MYSQL_PASSWORD=54321 mysql:latest
+
+docker rm -fv $(docker ps -aq)

@@ -1,0 +1,12 @@
+DETENER
+docker stop nombre contenedor
+
+INICIAR
+docker start nombre contenedor
+
+REINICIAR
+docker restart nombre contenedor
+
+EJECUTAR DENTRO DEL contenedor
+docker exec -it nombreContenedor comando
+
