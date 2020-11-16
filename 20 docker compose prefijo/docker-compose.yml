@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  webn:
+    image: restart-image
+    container_name: test_restart
+    build: .
+    restart: "always"

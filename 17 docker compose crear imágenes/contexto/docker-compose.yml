@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  web:
+    container_name: web2
+    image: web-test2
+    build:
+      context: ./myfiles
+      dockerfile: my-df

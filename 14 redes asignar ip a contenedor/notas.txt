@@ -1,0 +1,1 @@
+docker run -d --name alpin01 --ip 172.124.10.10 --network docker-net alpine
