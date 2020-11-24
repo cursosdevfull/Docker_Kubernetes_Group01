@@ -1,0 +1,44 @@
+Para crear un pod
+kubectl run serverweb --image=nginx:alpine
+
+Para listar los pods
+kubectl get pods
+
+Para ver la descripción del pod
+kubectl describe pod serverweb
+
+Para crear pods temporales
+kubectl run --rm -it serverweb2 --image=nginx:alpine -- sh
+
+Para eliminar un pods
+kubectl delete pod serverweb serverweb2 serverweb3
+
+Para obtener info de un pod
+kubectl get pod serverweb -o yaml
+kubectl get pod serverweb -o json
+kubectl get pod serverweb -o yaml | less
+
+Para ver el log de un pod
+kubectl logs serverweb2 -f
+
+Para revisar versión de kubectl
+kubectl version
+
+Para listar los recursos
+kubectl api-resources
+
+Para listar las versiones del api
+kubectl api-versions
+
+Para ejecutar un archivo yaml
+kubectl apply -f 01-pod.yaml
+
+Para eliminar los elementos de un yaml
+kubectl delete -f 01-pod.yaml
+
+Para listar los pods con sus etiquetas
+kubectl get pods --show-labels
+
+Para listar pods por labels
+kubectl get pods -l env=dev
+

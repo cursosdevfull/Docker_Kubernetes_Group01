@@ -1,0 +1,10 @@
+front
+    html, js -> back (xmlhttprequest)
+
+back
+    /message
+    /health
+
+
+-----------
+front, back
