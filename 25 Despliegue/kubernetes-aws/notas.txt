@@ -1,0 +1,28 @@
+Instalar
+- aws-cli
+- eksctl
+- helm
+
+Para setear credenciales
+aws configure
+
+Para crear un cluster
+eksctl create cluster --name test-cluster --without-nodegroup --region us-east-2 --zones us-east-2b,us-east-2a
+
+Para crear nodos
+eksctl create nodegroup \
+--cluster test-cluster \
+--version auto \
+--name test-workers \
+--node-type t3.medium \
+--node-ami auto \
+--nodes 1 \
+--nodes-min 1 \
+--nodes-max 3 \
+--asg-access
+
+Para loguearse o establecer una relación de confianza entre docker local y aws
+docker login -u AWS -p $(aws ecr get-login-password --region us-east-2) 282865065290.dkr.ecr.us-east-2.amazonaws.com
+
+Para crear un balanceador en AWS
+https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html
