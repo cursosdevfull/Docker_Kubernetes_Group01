@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(require("./api/health"));
 app.use(require("./api/message"));
 
-app.use("*", (req, res) => res.sendStatus(400));
+app.use("*", (req, res) => res.status(200).send("Hi"));
 
 const port = process.env.PORT || 19010;
 app.listen(port, (req, res) => {

@@ -1,0 +1,28 @@
+Para subir imágenes
+
+1. Habilitar Container Registry 
+2. Docker instalado
+3. Configurar Docker para autenticarnos
+    - gcloud auth login
+    - gcloud config set project PROJECT_ID  (en caso tengan más de un proyecto)
+      gcloud config set project cursodockerk8s-01
+    - gcloud auth configure-docker
+4. Habilitar el control de acceso
+    gcloud projects get-iam-policy PROJECT-ID  \
+    --flatten="bindings[].members" \
+    --format='table(bindings.role)' \
+    --filter="bindings.members:service-PROJECT-NUMBER@containerregistry.iam.gserviceaccount.com"
+
+    gcloud projects get-iam-policy cursodockerk8s-01  \
+    --flatten="bindings[].members" \
+    --format='table(bindings.role)' \
+    --filter="bindings.members:service-845412221130@containerregistry.iam.gserviceaccount.com"
+
+    gcloud projects get-iam-policy cursodockerk8s-01  --flatten="bindings[].members" --format='table(bindings.role)' --filter="bindings.members:service-845412221130@containerregistry.iam.gserviceaccount.com"    
+
+4. Taguear (hay que estar autenticado con Container Registry antes de taguear)
+    docker tag frontend:latest [hostname]/[id proyecto]/frontend
+5. Subir la imagen
+    docker push [hostname]/[id proyecto]/frontend
+
+6. gcloud container clusters resize cursodockerk8s-01 --num-nodes=0

@@ -1,0 +1,25 @@
+1. Crear un Resource Group
+2. Ingresar al ResourceGroup creado
+3. Agregar un Container Registry
+4. Descargar Azure CLI https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli
+5. Loguearse: az login
+6. Vincular con el container registry: az acr login --name cursodockerk8s01
+7. Taguear las imágenes para subir al container registry
+    docker tag <nombre imagen> <servidor container registry>/<nombre imagen>
+    docker tag <nombre imagen> cursodockerk8s01.azurecr.io/<nombre imagen>
+8. Para subir
+    docker push cursodockerk8s01.azurecr.io/<nombre imagen>
+9. Para saber si subieron las imágenes
+    az acr repository list --name <nombre del container registry>
+10. Desplegar los deployments y services de kubernetes. No olvidar cambiar las rutas de las imágenes.
+11. Instalar el Chocolatey:  https://chocolatey.org/
+12. Instalen el helm. El helm es el manejador u orquestador de paquetes de Kubernetes
+    choco install kubernetes-helm
+13. Agregar un ingress controller
+    helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+14. Instalar el ingress-controller
+helm install nginx-ingress ingress-nginx/ingress-nginx \
+    --set controller.replicaCount=2 \
+    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux

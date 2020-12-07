@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend1
+  labels:
+    app: backend1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend1
+  template:
+    metadata:
+      labels:
+        app: backend1
+    spec:
+      containers:
+        - name: backend1-pod
+          image: gcr.io/cursodockerk8s-01/backend1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3010
+          env:
+            - name: SERVICE_API2_ENDPOINT
+              value: http://backend2-svc:80/api
+            - name: PORT
+              value: "3010"
+          livenessProbe:
+            httpGet:
+              path: /api/healthz
+              port: 3010
+            initialDelaySeconds: 20
+            periodSeconds: 1800
+          resources:
+            requests:
+              memory: "256M"
+              cpu: 0.25
